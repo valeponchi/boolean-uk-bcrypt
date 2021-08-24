@@ -45,7 +45,7 @@ outside the `"compilerOptions"`:
 `"include": ["./src/**/*"]`
 
 
-# Steps to implement Password Auth
+# Steps to implement Password Auth - general
 
 ## Save User with hashed password
 
