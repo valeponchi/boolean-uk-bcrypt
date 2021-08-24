@@ -17,4 +17,13 @@ model User {
   username String  @unique
   password String
   bio      String?
+  posts    Post[]
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  imageUrl  String
+  text      String
+  userId    Int
+  user      User     @relation(references: [id], fields: [userId])
 }
