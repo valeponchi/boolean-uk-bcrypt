@@ -1,8 +1,51 @@
  <!-- // "scripts": {
   //   "test": "echo \"Error: no test specified\" && exit 1"
   // }, -->
+  
+# First steps:
+- create folder of the pjt, the `.gitignore` file (inside write: `node_modules` and `.env`), then create the `src` folder.
+- create a file `dist` (same level of `src` folder.
+- run:
 
-# Steps to implement Password Auth
+```
+npm init -y
+
+npm i express morgan dotenv prisma typescript cors (bcrypt)
+
+npx prisma init
+
+npx tsc 
+
+npm i @types/cors @types/express @types/dotenv @types/prisma (@types/bcrypt)
+```
+
+- in the package.json make sure you have:
+```
+"scripts": {
+	"compile": "tsc && node ./dist/app.js || exit 1",
+	"start": "nodemon -e ts -x \"npm run compile\""
+	}
+ ```
+ - in the tsconfig file make sure you uncomment: inside the `"compilerOptions"`: 
+ ```
+"target": "es6"
+"module": "commonjs"
+"outDir": "./dist"
+"strict": true
+"moduleResolution": "node"
+"baseUrl": "./"
+"paths": {
+			"*": ["node_modules/*"]
+		}
+"esModuleInterop": true
+"skipLibCheck": true
+"forceConsistentCasingInFileNames": true
+```
+outside the `"compilerOptions"`:
+`"include": ["./src/**/*"]`
+
+
+# Steps to implement Password Auth - general
 
 ## Save User with hashed password
 
@@ -56,3 +99,4 @@ Throw errors when we have invalid inputs!!
 Make sure we have a `@unique` field in our user model!
 
 ### Use the compare Bcrypt function to validate the user credential password against the saved hashed
+
