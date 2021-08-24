@@ -2,7 +2,7 @@ import express from 'express'
 import usersRouter from './resources/user/router'
 import authRouter from './resources/auth/router'
 // import cors from "cors"
-const cors = require('cors')
+import cors from 'cors'
 
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
@@ -27,7 +27,7 @@ app.all('*', (req, res) => {
 })
 
 //CONNECT THE SERVER
-app.listen(4000, () => {
+app.listen(3030, () => {
 	console.log('The server is connected!')
 })
 
