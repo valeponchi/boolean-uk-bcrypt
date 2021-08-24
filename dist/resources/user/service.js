@@ -12,8 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// this is what we use betwen prisma module and controller to extend the prisma-model functionality
 const database_1 = __importDefault(require("../../utils/database"));
 const bcrypt_1 = require("bcrypt");
+//this could have been just "create"
+// we want to put this create into the dbClient to use it in the controller
+// when creating a user and hash the pw
 const createWithHash = (newUser) => __awaiter(void 0, void 0, void 0, function* () {
     // grab user plaintext password
     const plaintext = newUser.password;
@@ -26,4 +30,8 @@ const createWithHash = (newUser) => __awaiter(void 0, void 0, void 0, function* 
     return savedUser;
 });
 const userClient = Object.assign(Object.assign({}, database_1.default.user), { createWithHash });
+// const userClient = {
+// 	...dbClient.user,
+// 	create
+// }
 exports.default = userClient;
