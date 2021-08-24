@@ -10,13 +10,13 @@
 ```
 npm init -y
 
-npm i express morgan dotenv prisma typescript cors
+npm i express morgan dotenv prisma typescript cors (bcrypt)
 
 npx prisma init
 
 npx tsc 
 
-npm i @types/cors @types/express @types/dotenv @types/bcrypt @types/prisma
+npm i @types/cors @types/express @types/dotenv @types/prisma (@types/bcrypt)
 ```
 
 - in the package.json make sure you have:
