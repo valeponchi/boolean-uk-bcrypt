@@ -10,13 +10,13 @@
 ```
 npm init -y
 
-npm i express morgan dotenv prisma typescript cors (bcrypt)
+npm i express morgan dotenv prisma typescript cors (bcrypt) jsonwebtoken
 
 npx prisma init
 
 npx tsc 
 
-npm i @types/cors @types/express @types/dotenv @types/prisma (@types/bcrypt)
+npm i @types/cors @types/express @types/dotenv @types/prisma (@types/bcrypt) @types/jsonwebtoken
 ```
 
 - in the package.json make sure you have:
@@ -44,6 +44,8 @@ npm i @types/cors @types/express @types/dotenv @types/prisma (@types/bcrypt)
 outside the `"compilerOptions"`:
 `"include": ["./src/**/*"]`
 
+**NOTES 1: `jwt.sign(payload, secret)` --> it creates a password
+**NOTES 2: `jwt.verufy(token, secret)` --> it gives back the payload
 
 # Steps to implement Password Auth - general
 

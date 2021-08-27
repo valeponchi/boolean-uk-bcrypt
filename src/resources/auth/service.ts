@@ -16,3 +16,4 @@ export const findUserWithValidation = async (userData: User) => {
 
 	return foundUser
 }
+export const findUnique = dbClient.user.findUnique

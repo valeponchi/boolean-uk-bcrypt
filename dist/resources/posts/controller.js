@@ -12,19 +12,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.findUnique = exports.findUserWithValidation = void 0;
+exports.createPost = exports.getAllPosts = void 0;
 const database_1 = __importDefault(require("../../utils/database"));
-const bcrypt_1 = require("bcrypt");
-const findUserWithValidation = (userData) => __awaiter(void 0, void 0, void 0, function* () {
-    const foundUser = yield database_1.default.user.findUnique({
-        where: { username: userData.username },
+function getAllPosts(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const currentUser = req.currentUser;
+        const posts = yield database_1.default.post.findMany({
+            where: { user: { id: currentUser.id } },
+            include: { user: { select: { username: true } } },
+        });
+        res.json({ data: posts });
     });
-    if (!foundUser)
-        throw new Error('Username/Password incorrect');
-    const isPasswordValid = yield bcrypt_1.compare(userData.password, foundUser.password);
-    if (!isPasswordValid)
-        throw new Error('Username/Password incorrect');
-    return foundUser;
-});
-exports.findUserWithValidation = findUserWithValidation;
-exports.findUnique = database_1.default.user.findUnique;
+}
+exports.getAllPosts = getAllPosts;
+// creating a post only with the logged in user
+function createPost(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const currentUser = req.currentUser;
+        const { imageUrl, text } = req.body;
+        const post = yield database_1.default.post.create({
+            data: {
+                imageUrl,
+                text,
+                user: { connect: { id: currentUser.id } },
+            },
+        });
+        res.json({ data: post });
+    });
+}
+exports.createPost = createPost;

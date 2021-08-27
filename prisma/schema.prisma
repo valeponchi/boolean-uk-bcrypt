@@ -11,19 +11,25 @@ generator client {
   provider = "prisma-client-js"
 }
 
+enum Role {
+  user
+  admin
+}
+
 model User {
   id       Int     @id @default(autoincrement())
   // Username has to be unique for auth purposes
   username String  @unique
   password String
   bio      String?
+  role     Role    @default(user)
   posts    Post[]
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  imageUrl  String
-  text      String
-  userId    Int
-  user      User     @relation(references: [id], fields: [userId])
+  id       Int    @id @default(autoincrement())
+  imageUrl String
+  text     String
+  userId   Int
+  user     User   @relation(references: [id], fields: [userId])
 }
