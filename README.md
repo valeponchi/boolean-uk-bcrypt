@@ -26,6 +26,7 @@ npm i @types/cors @types/express @types/dotenv @types/prisma (@types/bcrypt) @ty
 	"start": "nodemon -e ts -x \"npm run compile\""
 	}
  ```
+ (Now you can run `npm start` to start the server.
  - in the tsconfig file make sure you uncomment: inside the `"compilerOptions"`: 
  ```
 "target": "es6"
